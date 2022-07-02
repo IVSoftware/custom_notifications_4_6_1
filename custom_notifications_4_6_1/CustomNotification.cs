@@ -91,6 +91,12 @@ namespace custom_notification
         }
         public new void Dispose()
         {
+            if (Parent != null)
+            {
+                var tmp = Parent;
+                Parent.Controls.Remove(this);
+                tmp.Refresh();
+            }
             CurrentNotifications.Remove(this);
             RecalcLocations();
             base.Dispose();
